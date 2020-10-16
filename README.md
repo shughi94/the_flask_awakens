@@ -1,11 +1,11 @@
 
-# General
+# THE_FLASK_AWAKENS
 
 # Installation
-Run
-`export FLASK_APP=the_flask_awakens`
-`export FLASK_ENV=development`
-`python3 -m flask run`
+Run:
+- `export FLASK_APP=the_flask_awakens`
+- `export FLASK_ENV=development`
+- `python3 -m flask run`
 
 ## Configuration
 under the instance folder, create a `secret.py` file.
@@ -13,14 +13,24 @@ under the instance folder, create a `secret.py` file.
 example:
 
 ```py
+# database configuration
 DATABASE_URL = '127.0.0.1'
 DATABASE_PORT = '27017'
 DATABASE_NAME = 'jabbathehutt'
+
+# jwt configuration
+JWT_SECRET = 'JarJarBinksWasASithLord'
+TOKEN_DURATION = 360 #seconds
 ```
+
+## Versions
+For this project I've used:
+- Python 3.8.6
+- MongoDB v3.2.9
 
 # Project
 
-## Users
+## User
 
 Users can be created at this following endpoint:
 
@@ -32,5 +42,23 @@ POST to `/user/` with a body like this:
   "password": "12345"
 }
 ```
+
+### Notes
+
+## Auth
+To login, send a POST request to `/auth/` with a body like this:
+
+```json
+{
+  "username": "user",
+  "password": "12345"
+}
+```
+This will return (if info are correct) a valid JWT token.
+
+
+### Notes
+
+## Planet
 
 

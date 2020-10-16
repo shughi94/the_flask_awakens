@@ -2,7 +2,7 @@
 
 # Installation
 
-Under the instance folder, create a `secret.py` file.
+Create the `/instance` folder, and create a `secret.py` file inside.
 
 example:
 ```py

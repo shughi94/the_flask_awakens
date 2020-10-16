@@ -30,6 +30,10 @@ def listPlanets():
     
     endpoint = 'http://swapi.dev/api/planets/'
 
+    # if filter is applied
+    if request.args.get('search'):
+        endpoint += '?search='+request.args.get('search')
+
     # call swapi
     try:
         r = requests.get(endpoint)
@@ -41,7 +45,7 @@ def listPlanets():
             r = requests.get(data['next'])
             data = r.json()
             for planet in data['results']:
-                planets.append(planet)
+                planets.append(cleanSwapiData(planet, None))
     except:
         return jsonify({'error': 'something went wrong'})
     

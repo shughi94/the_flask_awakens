@@ -87,6 +87,8 @@ If I had more time, I would have created the planet class and used some custom f
 The way I get the list of planets is by having a while loop on every 'next' page SWAPI offers, so I get a full list of planets. If planets were a lot more than the 60 that SWAPI have, I would have probably returned a truncated list too with the `next` attribute.
 But since SWAPI offers 10000 free calls per day, I was not preoccupied that each `/planets/` call results in 7 SWAPI calls. 
 
+Also, a GET request that creates something in the DB is sketchy for a RESTful application, but since the user has no saying on the informations needed to create the planet I think it's OK.
+
 Could not add the order functionality due to time limit, but I saw that SWAPI offers something like `?ordering=name`.
 
 ## General Notes

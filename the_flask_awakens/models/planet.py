@@ -11,6 +11,7 @@ import re
 
 bp = Blueprint('planet', __name__, url_prefix='/planets')
 
+# function that clean the data received from the swapi api, and prepares it to be stored in mongo
 def cleanSwapiData(data, planet_id):
 
     if planet_id is None:
@@ -71,6 +72,7 @@ def getPlanet(payload, planet_id):
 
         clean_data = cleanSwapiData(data, planet_id)
 
+        # return newly created planet
         new_planet_id = planetsCollection.insert(clean_data)
         new_planet = planetsCollection.find_one({'planet_id': planet_id })
 

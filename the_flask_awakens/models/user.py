@@ -38,7 +38,7 @@ def createUser():
     # bcrypt password. the decode is needed by python3
     pw_hash = bcrypt.generate_password_hash(password).decode("utf-8")
 
-    # insert new user and return it TODO: bcrypt
+    # insert new user and return it
     user_id = usersCollection.insert({'username': username, 'password': pw_hash})
     new_user = usersCollection.find_one({'_id': user_id })
     

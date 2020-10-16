@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 
 from . import auth
 from .models import user
+from .models import planet
 
 import os
 
@@ -64,6 +65,7 @@ def create_app(test_config=None):
     # Add blueprints
     app.register_blueprint(user.bp)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(planet.bp)
 
     return app
 

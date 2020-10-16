@@ -27,6 +27,11 @@ TOKEN_DURATION = 360 #seconds
 For this project I've used:
 - Python 3.8.6
 - MongoDB v3.2.9
+- Flask 1.1.2
+- Flask-Bcrypt 0.7.1
+- Flask-PyMongo 2.3.0
+- PyJWT 1.4.2
+- requests 2.24.0
 
 # Project
 
@@ -60,5 +65,8 @@ This will return (if info are correct) a valid JWT token.
 ### Notes
 
 ## Planet
+To get the list of planets: GET `/planets/`
+
+### Notes
 
 

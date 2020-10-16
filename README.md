@@ -16,6 +16,8 @@ JWT_SECRET = 'JarJarBinksWasASithLord'
 TOKEN_DURATION = 360 #seconds
 ```
 
+The requirements.txt file shows which python modules the application need.
+
 Then run:
 - `export FLASK_APP=the_flask_awakens`
 - `export FLASK_ENV=development`

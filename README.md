@@ -17,3 +17,20 @@ DATABASE_URL = '127.0.0.1'
 DATABASE_PORT = '27017'
 DATABASE_NAME = 'jabbathehutt'
 ```
+
+# Project
+
+## Users
+
+Users can be created at this following endpoint:
+
+POST to `/user/` with a body like this:
+
+```json
+{
+  "username": "user",
+  "password": "12345"
+}
+```
+
+

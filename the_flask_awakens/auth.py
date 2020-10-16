@@ -81,7 +81,7 @@ def loginPost():
         
     return error
 
-@bp.route('/test', methods=['GET'])
-@token_required
-def test1(payload):
-    return "Authorization authorized! -> {}".format(payload['sub'])
+# @bp.route('/test', methods=['GET'])
+# @token_required
+# def test1(payload):
+#     return "Authorization authorized! -> {}".format(payload['sub'])

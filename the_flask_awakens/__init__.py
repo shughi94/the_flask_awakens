@@ -1,10 +1,18 @@
 from flask import Flask, jsonify, request
+from flask_pymongo import PyMongo
 
 import os
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+
+    # Get confidential info from the instance folder
+    app.config.from_pyfile('secrets.py')
+
+    # Database configuration
+    app.config["MONGO_URI"] = "mongodb://"+app.config['DATABASE_URL']+":"+app.config['DATABASE_PORT']+"/"+app.config['DATABASE_NAME']
+    mongo = PyMongo(app)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -19,11 +27,37 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-
-    # a simple test page
+        # a simple page that says hello
     @app.route('/planet', methods=['GET'])
     def getOnePlanet():
-        return jsonify({'result' : 'planet'})
+         # get collection
+        planetsCollection = mongo.db.planets
+
+        # find planet
+        planet = planetsCollection.find_one({'name' : 'planet1'})
+        if planet:
+            output = {'name' : planet['name'], 'distance' : planet['distance']}
+        else:
+            output = "No such planet with that name"
+
+        return jsonify({'result' : output})
+
+    @app.route('/planet', methods=['POST'])
+    def createPlanet():
+        # get collection
+        planetsCollection = mongo.db.planets
+
+        # get JSON data from body
+        name = request.json['name']
+        distance = request.json['distance']
+
+        # insert new planet and return it
+        planet_id = planetsCollection.insert({'name': name, 'distance': distance})
+        new_planet = planetsCollection.find_one({'_id': planet_id })
+        output = {'name' : new_planet['name'], 'distance' : new_planet['distance']}
+
+        return jsonify({'result' : output})
+
 
     return app
 
